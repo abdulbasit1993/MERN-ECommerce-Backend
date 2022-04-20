@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const config = require("config");
+const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
 const itemRoutes = require("./routes/item");
@@ -10,6 +11,11 @@ const orderRoutes = require("./routes/order");
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use("/api", authRoutes);
 app.use("/api", itemRoutes);
